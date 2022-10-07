@@ -1,10 +1,12 @@
 import { IsEmail } from 'class-validator';
+import { Task } from 'src/tasks/task.entity';
 import {
   Entity,
   PrimaryGeneratedColumn,
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 @Entity()
@@ -18,6 +20,9 @@ export class User {
 
   @Column()
   password: string;
+
+  @OneToMany((_type) => Task, (task) => task.user, { eager: true })
+  tasks: Task[];
 
   @CreateDateColumn({
     type: 'timestamp',

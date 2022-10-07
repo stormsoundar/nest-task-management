@@ -32,6 +32,7 @@ export class AuthService {
       throw new UnauthorizedException('Wrong password');
 
     delete user.password;
+    delete user.tasks;
 
     const payload: JwtPayload = { id: user.id, email: user.email };
 
